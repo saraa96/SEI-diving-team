@@ -18,7 +18,7 @@ app.set('view engine', 'ejs')
 app.use('/trips' , require('./routes/trip'))
 app.use('/corses' , require('./routes/corses'))
 app.use('/Profile' , require('./routes/Profile'))
-
+//dev test
 
 mongoose.connect(
    process.env.DB_CONNECTION,
