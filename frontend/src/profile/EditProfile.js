@@ -15,7 +15,7 @@ console.log(this.props.response.result);
       const { email, bio, name, createdAt } = this.props.response.result;
       const date = createdAt.split("-")
         return (
-            <Card>
+            <Card style={{paddingTop : "150px"}}>
        <form action={``} method="POST">
             <div className="row">  
               <div className="col-lg-12 col-md-12 col-sm-12">

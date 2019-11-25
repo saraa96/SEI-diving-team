@@ -32,7 +32,7 @@ export default class ShowProfile extends Component {
 
 
 
-        <Card>
+        <Card style={{paddingTop : "150px"}}>
         
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12">
