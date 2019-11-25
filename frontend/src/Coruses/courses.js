@@ -9,9 +9,9 @@ import './courses.css'
 import Show from './showCourse'
 export default class courses extends Component {
 
-// state = {
-//         courses: []
-//     }
+state = {
+        courses: []
+    }
 
 //     componentDidMount() {
 //         axios.get(`http://localhost:5000/corses`)
@@ -39,8 +39,8 @@ export default class courses extends Component {
 
 
   // </Card>
-<section>
-  <div class="container py-3">
+<section >
+  <div class="container py-3" >
     <div class="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
       <div class="row ">
         <div class="col-md-4">
