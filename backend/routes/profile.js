@@ -21,21 +21,30 @@ router.get('/:id', async(req,res)=>{
       } catch (error) {
           res.send({error})
       }
+
+      var decoded = jwt.verify(req.body.token , 'secret')
+       console.log(decoded);
+      
+           User.findById(decoded.user._id)
+           .then(user => user?  res.json(decoded.user) : res.send("token is not correct"))
+           .catch(err => res.send("err"))
+      
     })
-  router.post('/', async(req,res)=>{
-      //Profile.findById(req.params.id)
-      let profile = new Profile({
-          name: req.body.name,
-          email: req.body.email,
-          bio: req.body.bio,
-        });
-      try {
-          var data = await profile.save()
-          res.send({data})
-      } catch (error) {
-          res.send({error})
-      }
+  router.post('/', (req,res)=>{
+    //   //Profile.findById(req.params.id)
+    //   let profile = new Profile({
+    //       name: req.body.name,
+    //       email: req.body.email,
+    //       bio: req.body.bio,
+    //     });
+    //   try {
+    //       var data = await profile.save()
+    //       res.send({data})
+    //   } catch (error) {
+    //       res.send({error})
+    //   }
     })
+
     //update
     router.put('/Edit/:id', async(req,res)=>{
       //Profile.findById(req.params.id)

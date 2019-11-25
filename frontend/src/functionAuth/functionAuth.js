@@ -1,7 +1,7 @@
 import axios  from "axios"
 // register
 export const register = (newuser)=>{
-    return axios.post('/user/register' ,newuser )
+    return axios.post('http://localhost:5000/user/register' ,newuser )
     .then(res => console.log("registerd ! "))
     .catch(err => console.log(err))
 }
