@@ -39,8 +39,8 @@ export default class courses extends Component {
 
 
   // </Card>
-<section>
-  <div class="container py-3">
+<section >
+  <div class="container py-3" >
     <div class="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
       <div class="row ">
         <div class="col-md-4">

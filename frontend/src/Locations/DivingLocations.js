@@ -19,7 +19,7 @@ export default class DivingLocations extends Component {
         return (
             <div>
 
-<div className="left" >
+<div className="left" style={{paddingTop : "150px"}} >
         <div className="Instructors">
           <h2 className="coror">Welcome to</h2>
           <h4 className="coror">Diving Locations</h4>
