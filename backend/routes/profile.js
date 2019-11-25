@@ -49,9 +49,10 @@ router.get('/:id', async(req,res)=>{
     })
 
     //update
-    router.put('/Edit/:id', async(req,res)=>{
+    router.put('/edit/:id', async(req,res)=>{
       //User.findById(req.params.id)
       try {
+
           var result = await User.findById(req.params.id);
           res.send({result});
           User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{

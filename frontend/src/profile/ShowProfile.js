@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import './profile.css';
-// import axios from "axios";
 import jwt_decode from 'jwt-decode'
 
 export default class ShowProfile extends Component {
@@ -26,8 +25,7 @@ export default class ShowProfile extends Component {
       console.log("DecodedUser ",decodedUser)
       console.log("email ",decodedEmail)
 
-      //console.log(this.state.first_name);
-      // console.log("fffffff");
+
        this.setState(decodedUser)
       }else{
         this.props.history.push('/login')
@@ -35,31 +33,12 @@ export default class ShowProfile extends Component {
       }
    render() {
    
-     // console.log(this.props.response.result);
-      //const { email, bio, first_name, createdAt,last_name } = this.props.response.result;
+   
        const date = this.state.createdAt.split("-")
-      
-      
       
       
       return (
       
-        // <Card style={{ width: "18rem" }}>
-        //   <Card.Img variant="top" src="holder.js/100px160" alt="Pic Here" />
-        //   <Card.Body>
-        //     <Card.Title>{name}</Card.Title>
-        //     <Card.Text>
-        //       {email}
-        //     </Card.Text>
-        //     <Card.Text>
-        //       {bio}
-        //     </Card.Text>
-        //   </Card.Body>
-        //   <Card.Footer>
-        //     <small className="text-muted">Profile Created: {date[0]}-{date[1]}</small>
-        //   </Card.Footer>
-        // </Card>
-
 
 
         <Card style={{paddingTop : "150px"}}>

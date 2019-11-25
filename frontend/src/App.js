@@ -170,7 +170,7 @@ export default class App extends Component {
             />
             <Route  path="/locations" component={DivingLocations} />
             <Route
-             exact path="/profile/Edit/:id"
+             exact path="/profile/Edit/"
             render={props => (
               <EditProfile {...props} /*response={data}*/ />
             )}
