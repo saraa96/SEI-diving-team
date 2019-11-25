@@ -7,10 +7,12 @@ export const register = (newuser)=>{
 }
 // login 
 export const login = (user)=>{
-    return axios.post('/user/login' , user)
+    return axios.post('http://localhost:5000/user/login' , user)
     .then(token =>{
-            console.log(token.data)
-         localStorage.setItem('usertoken' , token.data)
+            //console.log(token.data)
+         localStorage.setItem('usertoken' , token.data.token)
+         console.log("after set token to storage");
+         
          return true
     })
     .catch(err=>console.log(err))
