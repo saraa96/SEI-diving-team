@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+
 const CoursesData = require("../model/courses").Courses;
+ const multer = require('multer')
 
 router.get("/", (req, res) => {
 
   CoursesData.find().then(data => {
-res.json(data)
+ //res.json(data)
     res.render("Courses/index", { Corses: data });
   });
 });
@@ -16,6 +18,8 @@ router.get("/new", (req, res) => {
   res.render("Courses/new");
 });
 router.post("/", (req, res) => {
+ console.log( req.file);
+
   var newCourse = req.body;
   var course = new CoursesData(newCourse);
   course
@@ -63,7 +67,7 @@ router.delete("/:id", (req, res) => {
 router.get('/edit/:id',(req,res)=>{
     CoursesData.findById(req.params.id)
     .then(data => {
-       res.json(data)
+      // res.json(data)
         res.render('Courses/edit', {course : data})
     }).catch(err => console.log(err))
     
