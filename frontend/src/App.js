@@ -22,7 +22,7 @@ import 'semantic-ui-css/semantic.min.css'
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
-import jwt_decode from 'jwt-decode'
+// import jwt_decode from 'jwt-decode'
 
 
 
@@ -145,8 +145,6 @@ export default class App extends Component {
     </Navbar>
     </BrowserRouter>
 </Navbar>
-
-
  <BrowserRouter>
     <Switch>
 <Route exact path='/' component={Home} />
