@@ -40,8 +40,7 @@ export default class DivingLocations extends Component {
         src={`https://www.google.com/maps/embed/v1/place?q=${this.state.Loc}&zoom=11&center=21.4858%2C39.1925&key=AIzaSyCi9DCG3wzcPg5zStmT1S87x4oYyEXmfLo` } allowFullScreen></iframe> 
 
       </div>
-      
-      
+
             </div>
 
               
