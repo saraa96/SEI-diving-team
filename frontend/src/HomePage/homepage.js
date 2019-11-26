@@ -3,14 +3,7 @@ import React, {Component } from 'react';
  import DatePicker from 'react-date-picker';
 export default class homepage extends Component {
     state = {
-      startDate:new Date(),
-      setStartDate:new Date(),
         date: 'dd'/'ww'/'yyyy' 
-      }
-      setStartDate =(date) =>{
-this.setState({
-  setStartDate:date
-})
       }
     onChange = date => this.setState({ date })
     render() {
@@ -25,7 +18,7 @@ this.setState({
           value={this.state.date}
         />
             </div>
-            
+            {console.log(this.state.date)}
             </div>
         )
     }

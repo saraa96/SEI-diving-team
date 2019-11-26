@@ -27,5 +27,6 @@
   text-align: center;
   background-color:#1e56a0;
   color: white;
+  position: fixed;
   padding: 7px;
 }

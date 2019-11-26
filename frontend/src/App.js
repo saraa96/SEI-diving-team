@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar,Nav ,Form,FormControl,Button} from 'react-bootstrap'
+import { Navbar,Nav ,Form,FormControl} from 'react-bootstrap'
 import Home from './HomePage/homepage'
 import './App.css'
 import {
@@ -16,7 +16,7 @@ import ShowProfile from './profile/ShowProfile'
 import Trip from './components/container/Trip'
 // import { sign } from 'crypto';
 // import jwtDecode from 'jwt-decode'
-// import { Container } from 'semantic-ui-react';
+ import { Icon,Button} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 // import NaveBar from './components/NaveBar/NaveBar.js';
 import DivingLocations from "./Locations/DivingLocations";
@@ -117,21 +117,22 @@ export default class App extends Component {
     </Nav>
     <Form className ="d-flex justify-content-around" inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button style = {{marginRight:"10px"}} variant="outline-secondary">Search</Button>
-    <a style = {{marginRight:"10px"}}  href ="/profile" onClick={()=>this.loadData()}><img
-            src="https://i.ibb.co/t3S57zK/scuba-diving-recreation-13-512.png"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          /></a>
-      <a href ="/cart"><img
-            src="https://icon-library.net/images/cart-icon-png-white/cart-icon-png-white-16.jpg"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          /></a>
+      
+      <Button  variant="outline-secondary">Search</Button>
+      <Button  style ={{backgroundColor:"transparent"}} animated='vertical'>
+      <Button.Content hidden>Profile</Button.Content>
+      <Button.Content visible>
+        <Icon name='user' />
+      </Button.Content>
+    </Button>
+ 
+    <Button  style ={{backgroundColor:"transparent"}} animated='vertical'>
+      <Button.Content hidden>Cart</Button.Content>
+      <Button.Content visible>
+        <Icon name='shop' />
+      </Button.Content>
+    </Button>
+
     </Form>
   </Navbar.Collapse>
   

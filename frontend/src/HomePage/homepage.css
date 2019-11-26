@@ -3,12 +3,11 @@ div.backGraound{
     width: 100%;
     background-image: url("https://belizedivingservices.com/wp-content/uploads/coral-reefs-featured.jpg");
     height: 750px;
-
-   
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  
 }
 .FindTrip{
     font-family: Arial, Helvetica, sans-serif;
