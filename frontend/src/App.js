@@ -18,10 +18,13 @@ import Trip from './components/container/Trip'
 // import jwtDecode from 'jwt-decode'
 // import { Container } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
+// import { Input, Menu } from 'semantic-ui-react'
+
 // import NaveBar from './components/NaveBar/NaveBar.js';
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
+
 
 
 
@@ -32,8 +35,15 @@ export default class App extends Component {
     error: "",
     data: null,
     courses: [],
-    isAdmin : false
+    isAdmin : false,
   };
+
+      // //function created to use log out 
+      // handleLogout = () =>{
+      //   localStorage.removeItem('usertoken')
+      //   this.setState({ isLoggedIn: true })
+      //   this.props.history.push('/')
+      // }
 
   loadData = () => {
     this.setState({ loading: true });
@@ -121,6 +131,7 @@ export default class App extends Component {
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           /></a>
+          
     </Form>
   </Navbar.Collapse>
   
