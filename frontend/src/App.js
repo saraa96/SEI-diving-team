@@ -77,13 +77,11 @@ export default class App extends Component {
       this.setState({ courses : result})})
     .catch(e => console.log(e))
   }
-  
   componentDidMount(){
     // this.loadData();
     this.getCourses()
     let token = localStorage.usertoken
     //console.log("toek: ",token)
-
   }
 
   render() {
@@ -112,9 +110,8 @@ export default class App extends Component {
           /></Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      
-    </Nav>
+    <Nav className="mr-auto"> </Nav>
+
     <Form className ="d-flex justify-content-around" inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       
@@ -132,8 +129,27 @@ export default class App extends Component {
         <Icon name='shop' />
       </Button.Content>
     </Button>
-
     </Form>
+
+    {/* <Form className ="d-flex justify-content-around" inline>
+    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button style = {{marginRight:"10px"}} variant="outline-secondary">Search</Button>
+    <a style = {{marginRight:"10px"}}  href ="/profile" onClick={()=>this.loadData()}><img
+            src="https://i.ibb.co/t3S57zK/scuba-diving-recreation-13-512.png"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          /></a>
+      <a href ="/cart"><img
+            src="https://icon-library.net/images/cart-icon-png-white/cart-icon-png-white-16.jpg"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          /></a>
+    </Form> */}
+
   </Navbar.Collapse>
   
   <BrowserRouter>
@@ -154,27 +170,16 @@ export default class App extends Component {
      <Route path="/courses/:id" render={({match}) => {
             if(!this.state.courses) return <div className="work">error</div>   
             return <Show 
-            course={this.state.courses.find(course => course._id === match.params.id) } />
-              }          
-          } /> 
+            course={this.state.courses.find(course => course._id === match.params.id) } />} } /> 
 
-           <Route exact path="/register" component={Register} />
+            <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/trip" render={(props)=> (this.state.isAdmin)? <Trip/> : "you are not allowed to view this" } />
-
-            <Route
-              exact
-              path="/Profile"
-              render={props => <ShowProfile {...props} /*response={data}*//>}
-            />
+            <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
             <Route  path="/locations" component={DivingLocations} />
-            <Route
-             exact path="/profile/Edit/"
-            render={props => (
-              <EditProfile {...props} /*response={data}*/ />
-            )}
-          />
-          <Route  path="*" component={Component404} />
+            <Route  exact path="/profile/Edit/" render={props => (
+              <EditProfile {...props} /*response={data}*/ /> )}/>
+            <Route  path="*" component={Component404} />
     </Switch>
     </BrowserRouter>
     

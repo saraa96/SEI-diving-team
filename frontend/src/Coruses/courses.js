@@ -48,11 +48,7 @@ state = {
       </div>
     </div>
 </section>
- 
-
-
   ) 
- 
         return (
             <div style = {{ marginTop:"190px", paddingBottom:"90px"  }}>
 
