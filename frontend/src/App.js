@@ -9,6 +9,8 @@ import {
 import axios from 'axios'
 import Courses from './Coruses/courses'
 import Show from './Coruses/showCourse'
+import Trips from './Trips/components/trip'
+import TripShow from './Trips/components/trips'
 // import LondingPage from './components/container/LondingPage'
 import Login from './components/container/Login'
 import Register from './components/container/Register'
@@ -33,6 +35,7 @@ export default class App extends Component {
     error: "",
     data: null,
     courses: [],
+    Trips:[],
     isAdmin : false
   };
 
@@ -77,9 +80,17 @@ export default class App extends Component {
       this.setState({ courses : result})})
     .catch(e => console.log(e))
   }
+  getTrips = () => {
+    fetch('http://localhost:5000/trips')
+    .then(res => res.json())
+    .then(result => { console.log(result);
+      this.setState({ Trips : result})})
+    .catch(e => console.log(e))
+  }
   componentDidMount(){
-    // this.loadData();
+    //this.loadData();
     this.getCourses()
+    this.getTrips()
     let token = localStorage.usertoken
     //console.log("toek: ",token)
   }
@@ -171,6 +182,13 @@ export default class App extends Component {
             if(!this.state.courses) return <div className="work">error</div>   
             return <Show 
             course={this.state.courses.find(course => course._id === match.params.id) } />} } /> 
+
+    <Route exact path='/trips'  render={(props) => <Trips {...props} trip={this.state.Trips} />} />
+    <Route path="/trips/:id" render={({match}) => {
+            if(!this.state.Trips) return <div className="work">error</div>   
+            return <TripShow
+            trip={this.state.Trips.find(trip => trip._id === match.params.id) } />} } /> 
+
 
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
