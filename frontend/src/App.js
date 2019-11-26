@@ -23,6 +23,7 @@ import 'semantic-ui-css/semantic.min.css'
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
+import jwt_decode from 'jwt-decode'
 
 
 
@@ -37,9 +38,19 @@ export default class App extends Component {
   };
 
   loadData = () => {
+
+    // const token = localStorage.usertoken
+    // if(token){
+    //   const decoded = jwt_decode(token)
+    // console.log(decoded)
+    // //this.setState(decoded.user)
+    // }else{
+    //   this.props.history.push('/login')
+    // }
+
     this.setState({ loading: true });
     return axios
-      .get(`http://localhost:5000/Profile/5ddadba5e36684078e819545`)
+      .get(`http://localhost:5000/Profile/5ddb9b0078680b43b09ee539`)
       .then(result => {
         console.log(result);
         this.setState({
@@ -69,26 +80,26 @@ export default class App extends Component {
   }
   
   componentDidMount(){
-    this.loadData();
+    // this.loadData();
     this.getCourses()
-    let token = localStorage.getItem('usertoken')
-    console.log("toek: ",token)
+    let token = localStorage.usertoken
+    //console.log("toek: ",token)
 
   }
 
   render() {
-    const { loading, error, data } = this.state;
-    if (loading) {
-      return <p>Loading ...</p>;
-    }
-    if (error) {
-      return (
-        <p>
-          There was an error loading.{" "}
-          <button onClick={this.loadData}>Try again</button>
-        </p>
-      );
-    }
+    // const { loading, error, data } = this.state;
+    // if (loading) {
+    //   return <p>Loading ...</p>;
+    // }
+    // if (error) {
+    //   return (
+    //     <p>
+    //       There was an error loading.{" "}
+    //       <button onClick={this.loadData}>Try again</button>
+    //     </p>
+    //   );
+    // }
     return (
        <div >
 
@@ -107,6 +118,7 @@ export default class App extends Component {
     </Nav>
     <Form className ="d-flex justify-content-around" inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      
       <Button  variant="outline-secondary">Search</Button>
       <Button  style ={{backgroundColor:"transparent"}} animated='vertical'>
       <Button.Content hidden>Profile</Button.Content>
@@ -158,13 +170,13 @@ export default class App extends Component {
             <Route
               exact
               path="/Profile"
-              render={props => <ShowProfile {...props} response={data} />}
+              render={props => <ShowProfile {...props} /*response={data}*//>}
             />
             <Route  path="/locations" component={DivingLocations} />
             <Route
-             exact path="/profile/Edit/:id"
+             exact path="/profile/Edit/"
             render={props => (
-              <EditProfile {...props} response={data} />
+              <EditProfile {...props} /*response={data}*/ />
             )}
           />
           <Route  path="*" component={Component404} />
