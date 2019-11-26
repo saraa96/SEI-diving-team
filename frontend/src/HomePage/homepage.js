@@ -2,17 +2,28 @@ import React, {Component } from 'react';
  import './homepage.css'
  import {
   Link,
-  Route,
 } from 'react-router-dom';
  import {Row,Col,Container,Image} from 'react-bootstrap'
  import {Button} from 'semantic-ui-react'
- import DatePicker from 'react-date-picker';
+ import 'react-datepicker/dist/react-datepicker.css'
+ import DatePicker from 'react-datepicker';
 export default class homepage extends Component {
     state = {
-        date: 'dd'/'ww'/'yyyy' 
+        StartDate: new Date(),
+        EndDate: new Date(),
       }
-    onChange = date => this.setState({ date })
+     
+    onChange = (StartDate)=> {
+      this.setState({ StartDate})
+       }
+       onChange2 = (EndDate)=> {
+        this.setState({ EndDate})
+         }
+    
     render() {
+      var str = this.state.StartDate.toString()
+      console.log(typeof(str));
+      
         return (
           <div >
             <div className="backGraound">
@@ -23,19 +34,23 @@ export default class homepage extends Component {
            </div>
           
           <div className="calnder" >
-        FROM :   <DatePicker
-          onChange={this.onChange}
-          value={this.state.date}
-        />
-           
-           TO :    <DatePicker
-          onChange={this.onChange}
-          value={this.state.date}
-        />
-
-            
+      
+     From :   <DatePicker
+     
+      showPopperArrow={false}
+      selected={this.state.StartDate}
+      onChange={StartDate => this.onChange(StartDate)}
+    />
+          
+    TO:      <DatePicker
+    dateFormat="yyyy/MM/dd"
+      showPopperArrow={false}
+      selected={this.state.EndDate}
+      onChange={EndDate => this.onChange2(EndDate)}
+    />
+<Button href='/trips'>Submit</Button>
             </div>
-            <Button >Submit</Button>
+           
             </div>
         <Container style={{marginRight:"40%",}} >
   <Row>
@@ -44,7 +59,7 @@ export default class homepage extends Component {
  <p style={{marginTop:"60px ",fontSize:"23px" , fontFamily:"Franklin Gothic Medium" }} >
  Diving offers many possibilities for education. First we have to face fears, learn new skills and later we continue to improve our skills and reach new boundaries. All the while learning about ourselves and a whole new world we barely acknowledged was there before.
  </p>
-
+{console.log(this.state.date)}
     </Col>
     <Col lg>
     <div className="sq">
@@ -52,7 +67,8 @@ export default class homepage extends Component {
     </Col>
     <Row>
     <Col style={{marginTop:"30px;"}} lg>
-
+ {console.log(str.substring(0,15))} 
+{console.log(this.state.StartDate)}
 <Image style={{width:"200%", marginLeft:"-320px",marginTop:"30px;"}} src="https://ambergrisdivers.com/wp-content/uploads/2018/11/padi-open-water-diver-course-990x490.jpg"  />
     </Col>
     <Col lg>
