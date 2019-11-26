@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar,Nav ,Form,FormControl} from 'react-bootstrap'
 import Home from './HomePage/homepage'
+import Uplod from './uplodimg.js'
 import './App.css'
 import {
   BrowserRouter, Switch,
@@ -114,7 +115,7 @@ export default class App extends Component {
       </Button.Content>
     </Button>
  
-    <Button  style ={{backgroundColor:"transparent"}} animated='vertical'>
+    <Button href="/Profile" style ={{backgroundColor:"transparent"}} animated='vertical'>
       <Button.Content hidden>Cart</Button.Content>
       <Button.Content visible>
         <Icon name='shop' />
@@ -130,6 +131,7 @@ export default class App extends Component {
       <Nav.Link  className="nav-link" href="/trips">Diving Trips</Nav.Link>
       <Nav.Link  className="nav-link" href="/courses"> Diving Courses</Nav.Link>
       <Nav.Link className="nav-link" href="/locations">Locations</Nav.Link>
+      
   </Nav>
     </Navbar>
     </BrowserRouter>
@@ -150,6 +152,7 @@ export default class App extends Component {
 
            <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/Uplod" component={Uplod} />
             <Route exact path="/trip" render={(props)=> (this.state.isAdmin)? <Trip/> : "you are not allowed to view this" } />
 
             <Route
