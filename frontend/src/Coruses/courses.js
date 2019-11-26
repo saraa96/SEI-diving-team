@@ -27,31 +27,20 @@ state = {
 
 
   let course = this.props.courses.map(item => 
-  //   <Card className="span">
-  //   <Card.Img  style={{width:"150px", height:"100px"}} variant="left" src={item.ImageUrl} />
 
-  //   <Card.Body>
-  //     <Card.Text>
-  //     {item.Description}
-  //     </Card.Text>
-  //   </Card.Body>
-  //   <NavLink className="btn btn-primary btn-block" to={`/courses/${item._id}`}>Book Now</NavLink>
-
-
-  // </Card>
 <section >
-  <div class="container py-3" >
-    <div class="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
-      <div class="row ">
-        <div class="col-md-4">
-            <img style={{width:"150px", height:"200px"}} variant="left" src={item.ImageUrl} class="w-100"/>
+  <div className="container py-3" >
+    <div className="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
+      <div className="row ">
+        <div className="col-md-4">
+            <img className={{width:"150px", height:"200px"}} variant="left" src={item.ImageUrl} class="w-100"/>
           </div>
-          <div class="col-md-8 px-3">
-            <div class="card-block px-3">
-              <h4 class="card-title">{item.CourseTitle}</h4>
-              <p class="card-text">{item.overview} </p>
-              <p class="card-text">{item.Price}</p>
-              <NavLink className="btn btn-primary " to={`/courses/${item._id}`}>Book Now</NavLink>
+          <div className="col-md-8 px-3">
+            <div className="card-block px-3">
+              <h4 className="card-title">{item.CourseTitle}</h4>
+              <p className="card-text">{item.overview} </p>
+              <p className="card-text">{item.Price}</p>
+              <NavLink  style={{width:"50%", marginLeft:"70%"}}  to={`/courses/${item._id}`}>Book Now</NavLink>
             </div>
           </div>
 
@@ -59,33 +48,9 @@ state = {
       </div>
     </div>
 </section>
- 
-
-
-
-
-//     <Row >
-//     <Col sm={3} >
-//     <Card id="ld-flex flex-row-reverse bd-highlight" style={{ width: '18rem' }}  className="flex-column" >
-//   <Card.Img className="CourseImg" variant="top" src={item.ImageUrl} />
- 
-//   <Card.Body className="CourseBody" >
-         
-//     <Card.Title>{item.CourseTitle}</Card.Title>
-//     <Card.Text >
-//     {item.Description}
-   
-//     </Card.Text>
-//     <NavLink className="btn btn-primary btn-block" to={`/courses/${item._id}`}>Book Now</NavLink>
-//     {/* <Button  href={`/courses/${item._id}`} variant="primary" > Book Now</Button> */}
-//   </Card.Body>
-// </Card>
-// </Col>
-//   </Row>
   ) 
- 
         return (
-            <div style = {{ marginTop:"190px"}}>
+            <div style = {{ marginTop:"190px", paddingBottom:"90px"  }}>
 
         {course}
             </div>

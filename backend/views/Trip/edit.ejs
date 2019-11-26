@@ -10,10 +10,13 @@
     <h2>Edit Trips</h2>
     <form action="/trips/edit/<%=trip._id%>?_method=PUT" method="POST">
         title: <input type="text" name="TripTitle"  value="<%=trip.TripTitle%>" /><br/>
-        Description: <input type="text" name="Description" value="<%=trip.Description%>" /><br/>
         Price: <input type="text" name="Price" value="<%=trip.Price%>" /><br/>
-        StartDate: <input type="text" name="StartDate"  value="<%=trip.StartDate%>" /><br/>
-        EndDate: <input type="text" name="EndDate" value="<%=trip.EndDate%>" /><br/>
+        Date: <input type="text" name="Date"  value="<%=trip.Date%>" /><br/>
+        StartTime: <input type="text" name="StartTime" value="<%=trip.StartTime%>" /><br/>
+        EndTime: <input type="text" name="EndTime" value="<%=trip.EndTime%>" /><br/>
+        DeparturePoint: <input type="text" name="DeparturePoint" value="<%= trip.DeparturePoint%>" /><br/>
+        Overview: <input type="text" name="Description" value="<%=trip.Description%>" /><br/>
+        ImageUrl: <input type="text" name="ImageUrl" value="<%=trip.ImageUrl%>" /><br/>
         <br/>
         <input type="submit">
 </body>

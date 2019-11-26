@@ -14,8 +14,11 @@ const TripSchema = new Schema({
     type: String,
     required: true
   },
-  StartDate: String,
-  EndDate:String
+  Date:String,
+  StartTime :String,
+  EndTime :String,
+  DeparturePoint:String,
+  ImageUrl:String 
 });
 
 const Trips = mongoose.model("Trips", TripSchema);

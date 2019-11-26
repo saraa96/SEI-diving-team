@@ -5,6 +5,7 @@ const TripData = require("../model/trips");
 
 router.get("/", (req, res) => {
   TripData.find({},(error, data)=>{
+    res.json(data)
     res.render("Trip/index", { Trips: data });
   })
 });
