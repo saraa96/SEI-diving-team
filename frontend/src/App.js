@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Navbar,Nav ,Form,FormControl} from 'react-bootstrap'
 import Home from './HomePage/homepage'
 import Uplod from './uplodimg.js'
+import AdminTrip from './Trips/AdminTrip'
 import './App.css'
 import {
   BrowserRouter, Switch,
-  Route, NavLink
+  Route, NavLink, withRouter
 } from 'react-router-dom';
 import axios from 'axios'
 import Courses from './Coruses/courses'
@@ -19,12 +20,13 @@ import ShowProfile from './profile/ShowProfile'
 import Trip from './components/container/Trip'
 // import { sign } from 'crypto';
 // import jwtDecode from 'jwt-decode'
- import { Icon,Button} from 'semantic-ui-react';
+ import { Icon,Button,Input, Menu} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
-// import NaveBar from './components/NaveBar/NaveBar.js';
+import NaveBar from './components/NaveBar/NaveBar.js';
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
+// import Nav from './components/NaveBar'
 // import jwt_decode from 'jwt-decode'
 
 
@@ -37,7 +39,8 @@ export default class App extends Component {
     data: null,
     courses: [],
     Trips:[],
-    isAdmin : false
+    isAdmin : false,
+    activeItem: 'home'
   };
 
   loadData = () => {
@@ -73,6 +76,7 @@ export default class App extends Component {
       });
   };
 
+
   getCourses = () => {
     fetch('http://localhost:5000/corses')
     .then(res => res.json())
@@ -96,7 +100,10 @@ export default class App extends Component {
     //console.log("toek: ",token)
   }
 
+
+
   render() {
+
     // const { loading, error, data } = this.state;
     // if (loading) {
     //   return <p>Loading ...</p>;
@@ -119,28 +126,38 @@ export default class App extends Component {
             height="80"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
-          /></Navbar.Brand>
+          />
+
+          
+          </Navbar.Brand>
+          
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto"> </Nav>
+   
+  
 
-    <Form className ="d-flex justify-content-around" inline>
-    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      
-      <Button  variant="outline-secondary">Search</Button>
-      <Button  style ={{backgroundColor:"transparent"}} animated='vertical'>
-      <Button.Content hidden>Profile</Button.Content>
+          <Form className ="d-flex justify-content-around" inline>
+{/* { this.token ? true : false } */}
+
+{ this.token  &&  <Nav.Link  className="nav-link" href="/login">Login</Nav.Link>}
+{ this.token  &&  <Nav.Link  className="nav-link" href="/register">Register</Nav.Link>}
+<BrowserRouter>
+<NaveBar />
+</BrowserRouter>
+<Nav.Link  className="nav-link" href="/home">Logout</Nav.Link>
+    <Button  href="/Profile" style ={{backgroundColor:"transparent"}} animated='vertical'>
+       <Button.Content hidden>Profile</Button.Content>
       <Button.Content visible>
         <Icon name='user' />
       </Button.Content>
-    </Button>
- 
-    <Button href="/Profile" style ={{backgroundColor:"transparent"}} animated='vertical'>
+    </Button> 
+     <Button href="/cart" style ={{backgroundColor:"transparent"}} animated='vertical'>
       <Button.Content hidden>Cart</Button.Content>
       <Button.Content visible>
         <Icon name='shop' />
       </Button.Content>
-    </Button>
+    </Button> 
     </Form>
 
     {/* <Form className ="d-flex justify-content-around" inline>
@@ -178,6 +195,8 @@ export default class App extends Component {
  <BrowserRouter>
     <Switch>
 <Route exact path='/' component={Home} />
+
+{/* <NaveBar /> */}
     <Route exact path='/home' component={Home} />
     <Route exact path='/courses'  render={(props) => <Courses {...props} courses={this.state.courses} />} />
      <Route path="/courses/:id" render={({match}) => {
@@ -193,9 +212,10 @@ export default class App extends Component {
 
 
             <Route exact path="/register" component={Register} />
+            
             <Route exact path="/login" component={Login} />
             <Route exact path="/Uplod" component={Uplod} />
-            <Route exact path="/trip" render={(props)=> (this.state.isAdmin)? <Trip/> : "you are not allowed to view this" } />
+            <Route exact path="/adminTrip" component= {AdminTrip} render={(props)=> (this.state.isAdmin) ? <AdminTrip />: console.log("http://localhost:5000/corsess") } />
             <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
             <Route  path="/locations" component={DivingLocations} />
             <Route  exact path="/profile/Edit/" render={props => (
