@@ -27,9 +27,6 @@ import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
 // import jwt_decode from 'jwt-decode'
 
-
-
-
 export default class App extends Component {
   state = {
     loading: true,

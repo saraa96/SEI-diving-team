@@ -12,7 +12,11 @@ const userSchema  = new Schema({
         required: true , 
         type: String
     },
-    isAdmin:Boolean
+    isAdmin:Boolean,
+    // This New code used for refrences in User Schema 
+    
+    Courses: [{ type: Schema.Types.ObjectId, ref: 'Courses'}],
+    Trips: [{ type: Schema.Types.ObjectId, ref: 'Trips'}]
 
 }, {timestamps: true}
 );
