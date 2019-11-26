@@ -17,16 +17,13 @@ cursor: default;
     height: 504px;
     width: 800px;
     margin-left: 30px ;
-    /* border: 1px solid black; */
     border-radius: 10px;
 
 }
 .Instructors{
-    height: 130px;
-    width: 250px;
+    height: 30px;
+    width: 50px;
     border: 1px solid rgba(0, 0, 0, 0.561);
-    border-radius: 10px;
-    background:  linear-gradient(to top right,  #0b010f96   0%,#181e25 100%)
 
 }
 .namebox{
@@ -56,7 +53,7 @@ background:  linear-gradient(to top right,  #0b010f96   0%,#181e25 100%)
     color: #0b010f;
 
 }
-/* 
 .frame{
-    margin-left: 30%;
-} */
+    width:100%;
+    margin-right: 400px;
+}
