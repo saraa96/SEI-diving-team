@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import './profile.css';
-import {NavLink} from 'react-router-dom' 
 import jwt_decode from 'jwt-decode'
+import axios from 'axios'
 
 export default class ShowProfile extends Component {
 
@@ -11,8 +11,33 @@ export default class ShowProfile extends Component {
         last_name: '',
         email: '',
         createdAt:'',
-        _id:''
+        _id:'',
+        password:''
       }
+
+      onSubmit = (e) => { 
+  
+        e.preventDefault();
+        console.log("on submit state",this.state)
+
+       var obj = {
+        password: this.state.password
+            }
+            let token = localStorage.usertoken
+        axios.put(`http://localhost:5000/profile/changePassword/${token}`, obj)
+            .then(res => {
+              console.log(res.data)
+            localStorage.removeItem('usertoken')
+
+            });
+        
+        this.props.history.push('/profile');
+
+      }
+      
+
+
+
     componentDidMount(){
           let token = localStorage.usertoken
     console.log("toek in Show Profile: ",token)
@@ -32,12 +57,15 @@ export default class ShowProfile extends Component {
         this.props.history.push('/login')
       }
       }
+
+      
+    
+      onchangeHanler = (e) =>{
+        this.setState({[e.target.name] : e.target.value})
+      }
    render() {
-   
-   
-       const date = this.state.createdAt.split("-")
       
-      
+      console.log(this.state.password)
       return (
       
 
@@ -58,7 +86,15 @@ export default class ShowProfile extends Component {
                           <div className="title">
                                 {this.state.first_name}  {this.state.last_name}  
                           </div>
-                          
+                          <form onSubmit={this.onSubmit}> 
+                          <input type="password" name="password" onChange={this.onchangeHanler} placeholder="new password"/>
+
+                          <div className="ui buttons">
+<button type="reset" className="ui button">Reset</button> 
+  <div className="or"></div>
+  <button type="submit" className="ui positive button">Save</button>
+</div>
+                          </form>
                           
                       </div>
                       <div className="desc">
@@ -67,16 +103,9 @@ export default class ShowProfile extends Component {
                       
                       
                       <div className="bottom">
-                          <a href={"mailto:" + this.state.email }>
-                              {/* <i className="fa fa-twitter"></i> */}
-                             
-                              {/* Send email to {name} */}
-                              
-                              <img alt="email icon" src="https://freeiconshop.com/wp-content/uploads/edd/email-flat.png" width="40px" height="40px"/>
-                          </a>
-                        <NavLink to="profile/edit"> <button>Edit Profile</button> </NavLink>
+                         
+                          
                       </div>
-                      <div className="desc">Profile Created: {date[0]}-{date[1]} </div>
                   </div>
       
               </div>
