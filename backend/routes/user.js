@@ -4,10 +4,24 @@ const mongoose = require('mongoose');
 const User = require('../model/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { check, validationResult } = require('express-validator');
 
 process.env.SECRET_KEY = 'secret'
 
-router.post('/register' , (req , res) =>{
+router.post('/register' ,[
+    check('first_name').isAlpha(),
+    check('last_name').isAlpha(),
+    // username must be an email
+    check('email').isEmail(),
+    // password must be at least 5 chars long
+    check('password').isLength({ min: 5 })
+  ], (req , res) =>{
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
     const newUser = {
         first_name: req.body.first_name,
@@ -71,5 +85,7 @@ router.get('/profile', (req , res)=>{
     })
     .catch(err => res.send(err))
 })
+
+
 
 module.exports = router

@@ -36,8 +36,8 @@ export default class DivingLocations extends Component {
         </div>
     
         </Col>
-
        <Col style={{paddingTop : "150px"}} xl > <h1>{this.state.Name}</h1>
+
       <iframe  sclassName="frame" title="DivingLocations" width="100%" height="500" frameBorder="0" style={{border:"0",marginRight:"900px"}}
         src={`https://www.google.com/maps/embed/v1/place?q=${this.state.Loc}&zoom=11&center=21.4858%2C39.1925&key=AIzaSyCi9DCG3wzcPg5zStmT1S87x4oYyEXmfLo` } allowFullScreen></iframe>  
         </Col>
