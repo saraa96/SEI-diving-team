@@ -21,11 +21,7 @@ let Trips = tripFilter.map(item =>
       <div className="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
         <div className="row ">
           <div className="col-md-4">
-<<<<<<< HEAD
-              <img variant="left" src={item.trip.ImageUrl} class="w-100"/>
-=======
               <img alt="s" className={{width:"150px", height:"200px"}} variant="left" src={item.ImageUrl} class="w-100"/>
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
             </div>
             <div className="col-md-8 px-3">
               <div className="card-block px-3">

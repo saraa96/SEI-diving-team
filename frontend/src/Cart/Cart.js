@@ -6,9 +6,6 @@ export default class Cart extends Component {
     state={
         cart : JSON.parse(localStorage.getItem('cart'))
     }
-   
-
-
     Delet = (select)=> {
         const remove = this.state.cart
         const deletIndex = this.state.cart.indexOf(select);

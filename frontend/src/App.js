@@ -1,306 +1,143 @@
-import React, { Component } from 'react'
-import { Navbar,Nav ,Form} from 'react-bootstrap'
-import jwt_decode from 'jwt-decode'
-import Home from './HomePage/homepage'
-import Uplod from './uplodimg.js'
-import Admin from './Admin'
-import Cart from './Cart/Cart'
-import './App.css'
-import {
-  BrowserRouter, Switch,
-  Route,
-} from 'react-router-dom';
-import axios from 'axios'
-import Courses from './Coruses/courses'
-import Show from './Coruses/showCourse'
-import Trips from './Trips/components/trip'
-import TripShow from './Trips/components/trips'
-import Login from './components/container/Login'
-import Register from './components/container/Register'
-import ShowProfile from './profile/ShowProfile'
-<<<<<<< HEAD
-import Trip from './components/container/Trip'
-import { Icon,Button,Input, Menu} from 'semantic-ui-react';
-=======
+import React, {Component } from 'react';
+ import './homepage.css'
+ import {Link} from 'react-router-dom';
+ import {Row,Col,Container,Image} from 'react-bootstrap'
+ import {Button} from 'semantic-ui-react'
+ import 'react-datepicker/dist/react-datepicker.css'
+ import DatePicker from 'react-datepicker';
 
-
- import Trip from './components/container/Trip'
- import { Icon,Button,Input, Menu} from 'semantic-ui-react';
-
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-import 'semantic-ui-css/semantic.min.css'
-
-// import { Input, Menu } from 'semantic-ui-react'
-
-// import NaveBar from './components/NaveBar/NaveBar.js';
-import NaveBar from './components/NaveBar/NaveBar.js';
-import DivingLocations from "./Locations/DivingLocations";
-import EditProfile from "./profile/EditProfile";
-import Component404 from './profile/components/Component404'
-
-
-<<<<<<< HEAD
-=======
-
-import ChangePassword from './profile/ChangePassword'
-
-
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-export default class App extends Component {
-  state = {
-    loading: true,
-    error: "",
-    data: null,
-    courses: [],
-    Trips:[],
-    isAdmin : false,
-<<<<<<< HEAD
-    activeItem: 'home'
-    ,alldate : [],
-    oneDate :'',
-    filterO : false
-=======
-    activeItem: 'home',
-    addtocart : [],
-    select:null,
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-  };
-
-  handleFaveToggle =(select) =>{
-    var temp = []
-    temp = this.state.addtocart
-    temp.push(select)
-      this.setState({
-        addtocart : temp,
-        select : select
-       }) 
-      localStorage.setItem("cart",JSON.stringify(this.state.addtocart))
-  }
-  loadData = () => {
-    this.setState({ loading: true });
-    return axios
-      .get(`http://localhost:5000/Profile/5ddb9b0078680b43b09ee539`)
-      .then(result => {
-        console.log(result);
-        this.setState({
-          data: result.data,
-          loading: false,
-          error: false
-        });
-      })
-      .catch(error => {
-        console.error("error: ", error);
-        this.setState({
-       
-          error: `${error}`,
-          loading: false
-        });
-      });
-  };
-
-
-  getCourses = () => {
-    fetch('http://localhost:5000/corses')
-    .then(res => res.json())
-    .then(result => { console.log(result);
-  
-      this.setState({ courses : result})})
-    .catch(e => console.log(e))
-  }
-  getTrips = () => {
-    fetch('http://localhost:5000/trips')
-    .then(res => res.json())
-    .then(result => { 
-      console.log(result);
-      this.setState({ Trips : result})})
-    .catch(e => console.log(e))
-  }
-
-
-  componentDidMount(){
- 
-    //this.loadData();
-    this.getCourses()
-    this.getTrips()
-    let token = localStorage.usertoken
-    
-    if(token){
-      const decoded= jwt_decode(token)
-
-      const admin = decoded.user.isAdmin
-
-      console.log("is ",admin);
-      this.setState({isAdmin:admin})
-      console.log(this.state.isAdmin);
-      
-    }else{
-      
-    }
-    
-  }
-// ==============
-changetheDateToFilter=(allDate , oneDate , boole)=>{
-
-this.setState({
-  alldate : allDate,
-    oneDate :oneDate,
-    filterO :boole
-})
-}
-// ==============
-
-
-  render() {
-<<<<<<< HEAD
-    console.log(this.state.alldate)
-    console.log(this.state.oneDate)
-=======
-  
-console.log(this.state.addtocart);
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-
-    return (
-       <div >
-<<<<<<< HEAD
- <Navbar fixed={'top'} style={{backgroundColor:"white",  width: "1440px",height: "91px",  backgroundColor: "#1e56a0" }}  expand="lg">
-=======
-
- <Navbar fixed={'top'} style={{  width: "100%",height: "91px",  backgroundColor: "#1e56a0" }}  expand="lg">
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-  <Navbar.Brand href="/home"> <img
-            src="https://i.ibb.co/B4r08CS/wave.png"
-            width="130"
-            height="80"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          />
-          </Navbar.Brand>
-          
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto"> </Nav>
-  
-          <Form className ="d-flex justify-content-around" inline>
-
-{ this.token  &&  <Nav.Link  className="nav-link" href="/login">Login</Nav.Link>}
-{ this.token  &&  <Nav.Link  className="nav-link" href="/register">Register</Nav.Link>}
-<BrowserRouter>
-<NaveBar />
-</BrowserRouter>
-<Nav.Link  className="nav-link" href="/home">Logout</Nav.Link>
-    <Button  href="/Profile" style ={{backgroundColor:"transparent"}} animated='vertical'>
-       <Button.Content hidden>Profile</Button.Content>
-      <Button.Content visible>
-        <Icon name='user' />
-      </Button.Content>
-    </Button> 
-     <Button href="/cart" style ={{backgroundColor:"transparent"}} animated='vertical'>
-      <Button.Content hidden>Cart</Button.Content>
-      <Button.Content visible>
-        <Icon name='shop' />
-      </Button.Content>
-    </Button> 
-    </Form>
-
-
-    {/* <Form className ="d-flex justify-content-around" inline>
-    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button style = {{marginRight:"10px"}} variant="outline-secondary">Search</Button>
-    <a style = {{marginRight:"10px"}}  href ="/profile" onClick={()=>this.loadData()}><img
-            src="https://i.ibb.co/t3S57zK/scuba-diving-recreation-13-512.png"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          /></a>
-      <a href ="/cart"><img
-            src="https://icon-library.net/images/cart-icon-png-white/cart-icon-png-white-16.jpg"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          /></a>
-    </Form> */}
-
-
-  </Navbar.Collapse>
-
-  
-  </Navbar.Collapse>
-  <BrowserRouter>
-<Navbar className="d-flex justify-content-around"  fixed={'top'} style = {{ marginTop:"90px", fontSize:"20px" ,opacity: "1",backgroundColor: "#d6e4f0"} }>
-        <Nav >
-      <Nav.Link  className="nav-link" href="/trips">Diving Trips</Nav.Link>
-      <Nav.Link  className="nav-link" href="/courses"> Diving Courses</Nav.Link>
-      <Nav.Link  className="nav-link" href="/locations">Locations</Nav.Link>
-      
-  </Nav>
-    </Navbar>
-    </BrowserRouter>
-</Navbar>
- <BrowserRouter>
-    <Switch>
-<Route exact path='/' component={Home} />
-<<<<<<< HEAD
-
-{/* <NaveBar /> */}
-    <Route exact path='/home' render={(props) => <Home {...props} trip={this.state.Trips} changetheDateToFilter={this.changetheDateToFilter} />}  />
-    <Route exact path='/courses'  render={(props) => <Courses {...props} courses={this.state.courses} />} />
-     <Route path="/courses/:id" render={({match}) => {
-            if(!this.state.courses) return <div className="work">error</div>   
-            return <Show 
-            course={this.state.courses.find(course => course._id === match.params.id) } />} } /> 
- 
-    <Route exact path='/trips'  render={(props) => <Trips  filterO={this.state.filterO} alldate = {this.state.alldate} oneDate={this.state.oneDate} {...props} trip={this.state.Trips} />} />
-=======
-    <Route exact path='/home' component={Home} />
-    <Route exact path='/courses'  render={(props) => <Courses {...props} courses={this.state.courses}  handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart} />} />
-     <Route path="/courses/:id" render={({match}) => {
-   return  <Show 
-            course={this.state.courses.find(course => course._id === match.params.id) }  handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart}  />}  } /> 
-
-    <Route exact path='/trips'  render={(props) => <Trips {...props} trip={this.state.Trips} />} />
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-    <Route path="/trips/:id" render={({match}) => {
-            if(!this.state.Trips) return <div className="work">error</div>   
-            return <TripShow
-            trip={this.state.Trips.find(trip => trip._id === match.params.id) } />} } /> 
-
-
-            <Route exact path="/register" component={Register} />
-<<<<<<< HEAD
-{/* alldate : [],
-    oneDate  */}
-=======
-            <Route  path="/cart" exact render ={(props) =>    <Cart  {...props}  handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart} />} />
->>>>>>> 3a4d74ec506f1b9eff45263ba63ee28e45e43bb6
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/Uplod" component={Uplod} />
-            { this.state.isAdmin ? <Route exact path="/admin" component= {Admin} /> : console.log("Sorry you are not admin ") } 
-            <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
-            
-            <Route  path="/locations" component={DivingLocations} />
-            <Route  exact path="/profile/Edit/" render={props => (
-              ///////////////////////
-            <EditProfile {...props} /*response={data}*/ /> )}/>
-              <EditProfile {...props} /*response={data}*/ /> )}/>
-              <Route  exact path="/profile/Edit/changePassword" render={props => (
-              <ChangePassword {...props} /*response={data}*/ /> )}/>
-            <Route  path="*" component={Component404} />
-    </Switch>
-    </BrowserRouter>
+var months = { '01':'Jan'  ,   '02' : 'Feb' , '03':'Mar' , '04': 'Apr' , '05':'May' , '06':'Jun' , '07':'Jul' , '08':'Aug' , '09':'Sep' , '10':'Oct' , '11':'Nov' , '12':'Dec' }
+export default class homepage extends Component {
+    state = {
+        StartDate: new Date(),
+        EndDate: new Date(),
+      }
      
-    <footer className = "footer">
-    <div className="d-flex justify-content-around">
-    <p>About us</p> 
-    <p>Safety & Fairst Aid</p>
-    <p>Careers</p>
-    <p>Contact us</p>
-    <p>Diving Brochure</p>
-    </div>
-  </footer>
-      </div>
-    )
+    onChange  = (StartDate)=> { this.setState({ StartDate})
+  this.props.changetheDateToFilter(this.state.Datee , StartDate.toString().substring(4,15) , true )
   }
-}
+    onChange2 = (EndDate)=> { this.setState({ EndDate}) }
+   
+      
+      //var Estr = this.state.EndDate.toString().substring(0,15)
+      //var trip = this.props.trip
+      // console.log(this.state.Datee);
+      // date formate 
+      // console.log(str)
+      // const tmparray = str.split(' ')
+     
+      // console.log(dd)
+      //   tmparray.pop()
+        // if (tmparray.localeCompare(this.state.Datee) != -1)
+        // {
+        //  console.log( "did it ");
+         
+        // }
 
+  // var tripFilter = trip.filter(
+  //       function (a)apr
+  //       {
+  //         if (trip.Date = str)
+  //         {
+  //           console.log("in the if ");
+  //         }
+  //       });
+  //   console.log(tripFilter);
+      // if (this.state.EndDate.toString().substring(0,15) == "Wed 02/12/2020")
+      // {
+      //   console.log ("it is match")
+      // }
+      // else{
+      //   console.log(" it is not ");
+      //   console.log(this.props.trip);
+        
+      // }
+    
+        
+    componentDidMount(){
+           setTimeout(() => {
+            var Datee =   this.props.trip.map(ele=> {
+              var splt = ele.Date.split('/')
+              // splt[1] splt[0] splt[2]
+              return `${months[splt[1]]} ${splt[0]} ${splt[2]} `
+            } )
+            Datee = this.props.trip.map((ele , i)=> {
+                return { trip :ele , datee : Datee[i]}
+            })
+           this.setState({Datee})
+           }, 1000);
+          //  var checkkdate = ()=>{
+          //   
+          //   const tmparray = str.split(' ')
+          //   const dd = `${tmparray[1]} ${tmparray[2]} ${tmparray[3]}`
+           
+          //   if ((this.state.Datee)== dd)
+          //   {
+          //     console.log("gggggggg");
+              
+          //   }}
+          }
+
+
+    render() {
+   console.log(this.state.Datee)
+   var str = this.state.StartDate.toString().substring(4,15)
+   console.log(str);
+   
+        return (
+          <div >
+            <div className="backGraound">
+            <div className="FindBorder">
+            --
+            </div>
+           <div className ="FindTrip">Find Trip
+           </div>
+          
+          <div className="calnder">
+      
+     From :   <DatePicker
+      showPopperArrow={false}
+      selected={this.state.StartDate}
+      onChange={StartDate => this.onChange(StartDate)} />
+          
+    {/* TO:      <DatePicker
+    dateFormat="yyyy/MM/dd"
+      showPopperArrow={false}
+      selected={this.state.EndDate}
+      onChange={EndDate => this.onChange2(EndDate)}
+    /> */}
+  <Link to="/trips" > <Button>Submit</Button></Link>
+            </div>
+           
+            </div>
+        <Container style={{marginRight:"40%",}} >
+  <Row>
+    <Col style={{marginTop:"60px"}} lg>
+ <h1 style={{fontSize:"70px",letterSpacing:"2px"}}>Why Scuba Dive</h1> 
+ <p style={{marginTop:"60px ",fontSize:"23px" , fontFamily:"Franklin Gothic Medium" }} >
+ Diving offers many possibilities for education. First we have to face fears, learn new skills and later we continue to improve our skills and reach new boundaries. All the while learning about ourselves and a whole new world we barely acknowledged was there before.
+ </p>
+{/* {console.log(this.state.date)} */}
+    </Col>
+    <Col lg>
+    <div className="sq"> </div>
+    </Col>
+    <Row style={{marginTop:"-10px"}} >
+    <Col lg>
+ {console.log(str.substring(0,15))} 
+{console.log(this.state.StartDate)}
+<Image style={{width:"200%", marginLeft:"-320px",marginTop:"30px;"}} src="https://ambergrisdivers.com/wp-content/uploads/2018/11/padi-open-water-diver-course-990x490.jpg"  />
+    </Col>
+    <Col lg>
+    <h1 style={{fontSize:"40px",marginTop:"160px",marginLeft:"45%" }}>IT’S DIFFERENT EVERYWHERE YOU GO, EVERY TIME YOU GO</h1> 
+    <div className = 'shopbtn'>
+       <Link to="/courses" >  <Button content='Primary' size="md" style = {{fontSize : "20px" , fontFamily: 'Courier New'}}  > JOIN NOW  </Button> </Link>  
+</div>
+    </Col>
+  </Row>
+  </Row>
+ </Container>
+            </div>
+        )
+    }
+}
