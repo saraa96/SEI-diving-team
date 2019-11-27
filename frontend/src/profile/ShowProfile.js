@@ -10,7 +10,8 @@ export default class ShowProfile extends Component {
         last_name: '',
         email: '',
         createdAt:'',
-        _id:''
+        _id:'',
+        isAdmin:false,
       }
     componentDidMount(){
           let token = localStorage.usertoken
@@ -24,8 +25,6 @@ export default class ShowProfile extends Component {
       console.log("Decoded token ",decoded)
       console.log("DecodedUser ",decodedUser)
       console.log("email ",decodedEmail)
-
-
        this.setState(decodedUser)
       }else{
         this.props.history.push('/login')
@@ -61,7 +60,7 @@ export default class ShowProfile extends Component {
                           
                       </div>
                       <div className="desc">
-                      {/* {bio} */}
+                  
                       </div>
                       
                       

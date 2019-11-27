@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import { Card, Nav } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import './profile.css';
 import 'semantic-ui-css/semantic.min.css'
 import jwt_decode from 'jwt-decode'
 import axios  from "axios"
-
 export default class EditProfile extends Component {
-
-
 state = {
   first_name: '',
   last_name: '',
@@ -72,8 +69,6 @@ console.log("email ",decodedEmail)
 
         return (
             <Card style={{paddingTop : "150px"}}>
-          
-       {/* <form action={`http://localhost:5000/profile/edit?_method=PUT`} method="POST"> */}
        <form onSubmit={this.onSubmit}>
             <div className="row">  
               <div className="col-lg-12 col-md-12 col-sm-12">
@@ -108,7 +103,6 @@ console.log("email ",decodedEmail)
                           
                           <div className="desc">Profile Created: {date[0]}-{date[1]}</div>
                       </div>
-{/* <input type="submit" value="submit" /> */}
 <div className="ui buttons">
 <button type="reset" className="ui button">Reset</button> 
   <div className="or"></div>

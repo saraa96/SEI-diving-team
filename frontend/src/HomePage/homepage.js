@@ -65,8 +65,8 @@ export default class homepage extends Component {
     <div className="sq">
     </div>
     </Col>
-    <Row>
-    <Col style={{marginTop:"30px;"}} lg>
+    <Row style={{marginTop:"-10px"}} >
+    <Col lg>
  {console.log(str.substring(0,15))} 
 {console.log(this.state.StartDate)}
 <Image style={{width:"200%", marginLeft:"-320px",marginTop:"30px;"}} src="https://ambergrisdivers.com/wp-content/uploads/2018/11/padi-open-water-diver-course-990x490.jpg"  />
