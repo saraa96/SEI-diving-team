@@ -9,10 +9,6 @@ import './courses.css'
 import Show from './showCourse'
 export default class courses extends Component {
 
-state = {
-        courses: []
-    }
-
 //     componentDidMount() {
 //         axios.get(`http://localhost:5000/corses`)
 //         // .then(res => res.json())
