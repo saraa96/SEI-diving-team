@@ -6,6 +6,8 @@ export const register = (newuser)=>{
     .then(res => console.log("registerd ! "))
     .catch(err => console.log(err))
 }
+
+
 // login 
 export const login = (user)=>{
 //user = email password
@@ -22,4 +24,15 @@ export const login = (user)=>{
     .catch(err=>console.log(err))
 }
 
+//logout 
+export const logout = (user)=>{
+    return axios.post('http://localhost:5000/user/logout' , user)
+    .then(token =>{
+            console.log(token)
+        localStorage.removeItem('usertoken') // localStorage Token in the browser will be removed 
+    })
+    .catch(err=>console.log(err))
+
+
+}
 

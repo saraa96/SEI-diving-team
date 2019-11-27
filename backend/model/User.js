@@ -15,9 +15,11 @@ const userSchema  = new Schema({
     isAdmin:{
         default: false
     }
-
-}, {timestamps: true}
+// This New code used for refrences in User Schema 
+    Courses: [{ type: Schema.Types.ObjectId, ref: 'Courses'}],
+    Trips: [{ type: Schema.Types.ObjectId, ref: 'Trips'}]
+}, 
+{timestamps: true}
 );
-
 const User = mongoose.model('User',userSchema)
 module.exports = User

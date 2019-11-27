@@ -20,10 +20,14 @@ import Register from './components/container/Register'
 import ShowProfile from './profile/ShowProfile'
 
 
-import Trip from './components/container/Trip'
+ import Trip from './components/container/Trip'
  import { Icon,Button,Input, Menu} from 'semantic-ui-react';
 
 import 'semantic-ui-css/semantic.min.css'
+
+// import { Input, Menu } from 'semantic-ui-react'
+
+// import NaveBar from './components/NaveBar/NaveBar.js';
 import NaveBar from './components/NaveBar/NaveBar.js';
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
@@ -32,6 +36,7 @@ import Component404 from './profile/components/Component404'
 
 
 import ChangePassword from './profile/ChangePassword'
+
 
 export default class App extends Component {
   state = {
@@ -164,6 +169,29 @@ console.log(this.state.addtocart);
       </Button.Content>
     </Button> 
     </Form>
+
+
+    {/* <Form className ="d-flex justify-content-around" inline>
+    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button style = {{marginRight:"10px"}} variant="outline-secondary">Search</Button>
+    <a style = {{marginRight:"10px"}}  href ="/profile" onClick={()=>this.loadData()}><img
+            src="https://i.ibb.co/t3S57zK/scuba-diving-recreation-13-512.png"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          /></a>
+      <a href ="/cart"><img
+            src="https://icon-library.net/images/cart-icon-png-white/cart-icon-png-white-16.jpg"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          /></a>
+    </Form> */}
+
+
+  </Navbar.Collapse>
 
   
   </Navbar.Collapse>
