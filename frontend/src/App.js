@@ -18,12 +18,21 @@ import TripShow from './Trips/components/trips'
 import Login from './components/container/Login'
 import Register from './components/container/Register'
 import ShowProfile from './profile/ShowProfile'
- import { Icon,Button,} from 'semantic-ui-react';
+
+
+import Trip from './components/container/Trip'
+ import { Icon,Button,Input, Menu} from 'semantic-ui-react';
+
 import 'semantic-ui-css/semantic.min.css'
 import NaveBar from './components/NaveBar/NaveBar.js';
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
+
+
+
+import ChangePassword from './profile/ChangePassword'
+
 export default class App extends Component {
   state = {
     loading: true,
@@ -191,9 +200,12 @@ console.log(this.state.addtocart);
             <Route exact path="/Uplod" component={Uplod} />
             { this.state.isAdmin ? <Route exact path="/admin" component= {Admin} /> : console.log("Sorry you are not admin ") } 
             <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
+            
             <Route  path="/locations" component={DivingLocations} />
             <Route  exact path="/profile/Edit/" render={props => (
               <EditProfile {...props} /*response={data}*/ /> )}/>
+              <Route  exact path="/profile/Edit/changePassword" render={props => (
+              <ChangePassword {...props} /*response={data}*/ /> )}/>
             <Route  path="*" component={Component404} />
     </Switch>
     </BrowserRouter>
