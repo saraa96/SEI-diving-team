@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Card, Nav } from "react-bootstrap";
+import { Card, Nav} from "react-bootstrap";
 import './profile.css';
 import 'semantic-ui-css/semantic.min.css'
 import jwt_decode from 'jwt-decode'
+import {NavLink} from 'react-router-dom' 
 import axios  from "axios"
+import { login } from '../functionAuth/functionAuth';
+//import bcrypt from 'bcrypt'
 
 export default class EditProfile extends Component {
 
@@ -13,37 +16,57 @@ state = {
   last_name: '',
   email: '',
   createdAt:'',
-  _id:''
+  _id:'',
+  password:''
 }
 
-EditProfileHandler = (e)=>{
+onChangeHandler = (e)=>{
 console.log("EditProfileHandler Run");
 this.setState({
   [e.target.name] : e.target.value
 })
-console.log("this is state",this.state);
+// console.log(e.target.name)
 
 
 }
 
 
 
-onSubmit(e) {
+onSubmit = (e) => { 
+  
   e.preventDefault();
-  const obj = {
-    first_name: this.state.first_name,
-    last_name: this.state.last_name,
-    email: this.state.email,
-    createdAt: this.state.createdAt,
-    _id: this.state._id
-  };
-  axios.post('http://localhost:5000/profile/edit/'+this.state._id, obj)
-      .then(res => console.log(res.data));
+  console.log("on submit state",this.state)
+  // const updatedUser = {
+  //   [e.target.name] : e.target.value
+  // };
+//////
+// bcrypt.hash(this.state.password , 10 ,(err, hash)=>{
+//   this.state.password =hash
+
+//   .then(() => console.log("Changed Successfully "))
+//   .catch(err =>console.log(err))
+// })
+
+/////
+ var obj = {
+  first_name: this.state.first_name,
+  last_name: this.state.last_name,
+  email: this.state.email
+      }
+  axios.put(`http://localhost:5000/profile/edit/${this.state._id}`, obj)
+      .then(res => {
+        console.log(res.data)
+      localStorage.removeItem('usertoken')
+      
+      
+      });
   
   this.props.history.push('/profile');
+
+
+
+
 }
-
-
 
 
 componentDidMount(){
@@ -67,6 +90,7 @@ console.log("email ",decodedEmail)
 }
     
     render() {
+      console.log("this is state",this.state);
 
       const date = this.state.createdAt.split("-")
 
@@ -88,23 +112,26 @@ console.log("email ",decodedEmail)
                           <div className="info">
                               <div className="title">
                               <label>Name: </label>
-                                 <input onChange={this.EditProfileHandler} type="text" name="name" placeholder={this.state.first_name +" "+ this.state.last_name} />
+                                 <input onChange={this.onChangeHandler} type="text" name="first_name" placeholder={this.state.first_name} />
+                                 <input onChange={this.onChangeHandler} type="text" name="last_name" placeholder={this.state.last_name} />
                               </div>
                               
                               
                           </div>
                           <div className="desc">
                           <label>Bio: </label>
-                          <input onChange={this.EditProfileHandler} type="text" name="bio" placeholder="bio" />
+                          <input onChange={this.onChangeHandler} type="text" name="bio" placeholder="bio" />
                           </div>
                           
                           
                           <div className="bottom">
                           <label>Email: </label>
-                          <input onChange={this.EditProfileHandler} type="email" name="email" placeholder={this.state.email} />
-                              
+                          <input onChange={this.onChangeHandler} type="email" name="email" placeholder={this.state.email} />
+                          <NavLink to="edit/changePassword"><button>Change Password</button></NavLink>
                               
                           </div>
+
+                          
                           
                           <div className="desc">Profile Created: {date[0]}-{date[1]}</div>
                       </div>

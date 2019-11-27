@@ -10,6 +10,7 @@ onChangHandler=(e)=>{
 }
 onSubmitHandelr = async (e)=>{
     e.preventDefault()
+    localStorage.removeItem('usertoken')
     var test = login(this.state)
     if(test){ 
         this.props.history.push('/profile') 

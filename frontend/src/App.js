@@ -25,6 +25,7 @@ import 'semantic-ui-css/semantic.min.css'
 import DivingLocations from "./Locations/DivingLocations";
 import EditProfile from "./profile/EditProfile";
 import Component404 from './profile/components/Component404'
+import ChangePassword from './profile/ChangePassword'
 // import jwt_decode from 'jwt-decode'
 
 
@@ -197,9 +198,12 @@ export default class App extends Component {
             <Route exact path="/Uplod" component={Uplod} />
             <Route exact path="/trip" render={(props)=> (this.state.isAdmin)? <Trip/> : "you are not allowed to view this" } />
             <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
+            
             <Route  path="/locations" component={DivingLocations} />
             <Route  exact path="/profile/Edit/" render={props => (
               <EditProfile {...props} /*response={data}*/ /> )}/>
+              <Route  exact path="/profile/Edit/changePassword" render={props => (
+              <ChangePassword {...props} /*response={data}*/ /> )}/>
             <Route  path="*" component={Component404} />
     </Switch>
     </BrowserRouter>
