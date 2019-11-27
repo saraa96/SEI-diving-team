@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './courses.css'
 import Cart from '../Cart/Cart'
 
-import { Button } from 'react-bootstrap'
+import { Button } from 'semantic-ui-react'
 export default class showCourse extends Component {
 
   state = {
@@ -41,8 +41,6 @@ export default class showCourse extends Component {
 {console.log(this.props.select)}
 {console.log(this.props.addtocart)}
 
-
-{/* { this.props.addtocart.length !== 0 &&   <Cart addtocart = {this.props.addtocart} />} */}
         </div>     
           </>
           )

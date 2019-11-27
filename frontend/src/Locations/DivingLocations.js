@@ -24,13 +24,13 @@ export default class DivingLocations extends Component {
        <Col style ={{margin:"30px"}}>  <div style ={{width:"80%",paddingTop : "200px"}}>
             <div class="ui vertical pointing menu">
   <a class="item" onClick={()=> this.handelEventSelect("21.599033,39.064878","Desert Sea Divers")}>
-         First Address 
+  Desert Sea Divers
   </a>
   <a class="item" onClick={()=> this.handelEventSelect("21.493797,39.075631","Saati Adventures")}>
-          Second Address 
+  Saati Adventures
   </a>
   <a class="item" onClick={()=> this.handelEventSelect("21.541623,38.956837","Orca Divers SA")}>
-           Third Address 
+  Orca Divers SA
   </a>
 </div>
         </div>

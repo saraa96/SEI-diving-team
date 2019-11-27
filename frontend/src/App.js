@@ -109,7 +109,10 @@ export default class App extends Component {
     
   }
 
-
+  handleLogout = () =>{
+    localStorage.removeItem('usertoken')
+    localStorage.clear()
+  }
 
   render() {
   
@@ -135,13 +138,9 @@ console.log(this.state.addtocart);
     <Nav className="mr-auto"> </Nav>
   
           <Form className ="d-flex justify-content-around" inline>
-
-{ this.token  &&  <Nav.Link  className="nav-link" href="/login">Login</Nav.Link>}
-{ this.token  &&  <Nav.Link  className="nav-link" href="/register">Register</Nav.Link>}
-<BrowserRouter>
-<NaveBar />
-</BrowserRouter>
-<Nav.Link  className="nav-link" href="/home">Logout</Nav.Link>
+ <Nav.Link style={{color:"black"}} className="nav-link" href="/login"   >Login</Nav.Link>
+ <Nav.Link  style={{color:"black"}} className="nav-link" href="/register">Register</Nav.Link>
+<Nav.Link  style={{color:"black" }} className="nav-link" href="/home" onClick={this.handleLogout} >Logout</Nav.Link>
     <Button  href="/Profile" style ={{backgroundColor:"transparent"}} animated='vertical'>
        <Button.Content hidden>Profile</Button.Content>
       <Button.Content visible>
@@ -178,11 +177,11 @@ console.log(this.state.addtocart);
    return  <Show 
             course={this.state.courses.find(course => course._id === match.params.id) }  handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart}  />}  } /> 
 
-    <Route exact path='/trips'  render={(props) => <Trips {...props} trip={this.state.Trips} />} />
+    <Route exact path='/trips'  render={(props) => <Trips {...props} trip={this.state.Trips} handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart} />} />
     <Route path="/trips/:id" render={({match}) => {
             if(!this.state.Trips) return <div className="work">error</div>   
             return <TripShow
-            trip={this.state.Trips.find(trip => trip._id === match.params.id) } />} } /> 
+            trip={this.state.Trips.find(trip => trip._id === match.params.id) } handleFaveToggle = {this.handleFaveToggle}  select = {this.state.select} addtocart = {this.state.addtocart} />} } /> 
 
 
             <Route exact path="/register" component={Register} />
