@@ -38,6 +38,9 @@ export default class App extends Component {
     Trips:[],
     isAdmin : false,
     activeItem: 'home'
+    ,alldate : [],
+    oneDate :'',
+    filterO : false
   };
 
   loadData = () => {
@@ -85,7 +88,8 @@ export default class App extends Component {
   getTrips = () => {
     fetch('http://localhost:5000/trips')
     .then(res => res.json())
-    .then(result => { console.log(result);
+    .then(result => { 
+      console.log(result);
       this.setState({ Trips : result})})
     .catch(e => console.log(e))
   }
@@ -96,10 +100,21 @@ export default class App extends Component {
     let token = localStorage.usertoken
     //console.log("toek: ",token)
   }
+// ==============
+changetheDateToFilter=(allDate , oneDate , boole)=>{
 
+this.setState({
+  alldate : allDate,
+    oneDate :oneDate,
+    filterO :boole
+})
+}
+// ==============
 
 
   render() {
+    console.log(this.state.alldate)
+    console.log(this.state.oneDate)
 
     // const { loading, error, data } = this.state;
     // if (loading) {
@@ -115,7 +130,6 @@ export default class App extends Component {
     // }
     return (
        <div >
-
  <Navbar fixed={'top'} style={{backgroundColor:"white",  width: "1440px",height: "91px",  backgroundColor: "#1e56a0" }}  expand="lg">
   <Navbar.Brand href="/home"> <img
             src="https://i.ibb.co/B4r08CS/wave.png"
@@ -124,8 +138,6 @@ export default class App extends Component {
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           />
-
-          
           </Navbar.Brand>
           
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -183,7 +195,7 @@ export default class App extends Component {
         <Nav >
       <Nav.Link  className="nav-link" href="/trips">Diving Trips</Nav.Link>
       <Nav.Link  className="nav-link" href="/courses"> Diving Courses</Nav.Link>
-      <Nav.Link className="nav-link" href="/locations">Locations</Nav.Link>
+      <Nav.Link  className="nav-link" href="/locations">Locations</Nav.Link>
       
   </Nav>
     </Navbar>
@@ -194,14 +206,14 @@ export default class App extends Component {
 <Route exact path='/' component={Home} />
 
 {/* <NaveBar /> */}
-    <Route exact path='/home' component={Home} />
+    <Route exact path='/home' render={(props) => <Home {...props} trip={this.state.Trips} changetheDateToFilter={this.changetheDateToFilter} />}  />
     <Route exact path='/courses'  render={(props) => <Courses {...props} courses={this.state.courses} />} />
      <Route path="/courses/:id" render={({match}) => {
             if(!this.state.courses) return <div className="work">error</div>   
             return <Show 
             course={this.state.courses.find(course => course._id === match.params.id) } />} } /> 
-
-    <Route exact path='/trips'  render={(props) => <Trips {...props} trip={this.state.Trips} />} />
+ 
+    <Route exact path='/trips'  render={(props) => <Trips  filterO={this.state.filterO} alldate = {this.state.alldate} oneDate={this.state.oneDate} {...props} trip={this.state.Trips} />} />
     <Route path="/trips/:id" render={({match}) => {
             if(!this.state.Trips) return <div className="work">error</div>   
             return <TripShow
@@ -209,18 +221,19 @@ export default class App extends Component {
 
 
             <Route exact path="/register" component={Register} />
-            
+{/* alldate : [],
+    oneDate  */}
             <Route exact path="/login" component={Login} />
             <Route exact path="/Uplod" component={Uplod} />
             <Route exact path="/adminTrip" component= {AdminTrip} render={(props)=> (this.state.isAdmin) ? <AdminTrip />: console.log("http://localhost:5000/corsess") } />
             <Route exact path="/Profile" render={props => <ShowProfile {...props} /*response={data}*//>}/>
             <Route  path="/locations" component={DivingLocations} />
             <Route  exact path="/profile/Edit/" render={props => (
-              <EditProfile {...props} /*response={data}*/ /> )}/>
+            <EditProfile {...props} /*response={data}*/ /> )}/>
             <Route  path="*" component={Component404} />
     </Switch>
     </BrowserRouter>
-    
+     
     <footer className = "footer">
     <div className="d-flex justify-content-around">
     <p>About us</p> 
