@@ -27,7 +27,7 @@ export const logout = (user)=>{
     return axios.post('http://localhost:5000/user/logout' , user)
     .then(token =>{
             console.log(token)
-        localStorage.removeItem('usertoken') // localStorage in the browser will be removed 
+        localStorage.removeItem('usertoken') // localStorage Token in the browser will be removed 
     })
     .catch(err=>console.log(err))
 

@@ -170,13 +170,9 @@ export default class App extends Component {
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           /></a>
-<<<<<<< HEAD
-          
-    </Form>
-=======
     </Form> */}
 
->>>>>>> 070f66b04e702c0290a75d032f783f3fa6faacf8
+
   </Navbar.Collapse>
   
   <BrowserRouter>
