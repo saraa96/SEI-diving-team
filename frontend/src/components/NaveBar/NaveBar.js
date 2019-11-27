@@ -18,9 +18,11 @@ class NaveBar extends Component {
     }
     } )
 
+    //function created to use log out 
     handleLogout = () =>{
       localStorage.removeItem('usertoken')
-    
+      this.setState({ isLoggedIn: true })
+      this.props.history.push('/')
     }
 
   render() {
@@ -47,9 +49,11 @@ class NaveBar extends Component {
           <Menu.Item>
             <Input icon='search' placeholder='Search...' />
           </Menu.Item>
+         
+         
           <Menu.Item
             name='logout'
-            active={activeItem === 'logout'}
+            active={activeItem === 'logout'} //This is used to click and log out 
             onClick={this.handleLogout}
           />
         </Menu.Menu>

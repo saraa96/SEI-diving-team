@@ -12,7 +12,7 @@ export default class showCourse extends Component {
       <>
       <div style={{ paddingTop: "45px", paddingBottom: "90px" }}>
         <div class="container">
-          <img src={this.state.data.ImageUrl} className='showImage'/>
+          <img src={this.state.data.ImageUrl} alt ="d" className='showImage'/>
           <div class="text-block">
             <h1>{this.state.data.TripTitle}</h1>
           </div>
@@ -36,7 +36,7 @@ export default class showCourse extends Component {
                         <div class="dropdown dropdown-lg">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <form class="form-horizontal" role="form">
+                                <form class="form-horizontal" >
                                   <div class="form-group">
                                     <label for="filter">Narrow the search:</label>
                                     <select class="form-control">
@@ -62,7 +62,7 @@ export default class showCourse extends Component {
                                     <input type="text" class="form-control" id="min-price" placeholder="Min"/>
                                 </div>
                                                        
-                                  <button type="submit" class="btn btn-primary btn-block">Search :: <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                  <button type="submit" class="btn btn-primary btn-block">Search : <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                   </div>
                                 </form>
                             </div>
