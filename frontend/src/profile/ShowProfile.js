@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import './profile.css';
+import {NavLink} from 'react-router-dom' 
 import jwt_decode from 'jwt-decode'
 
 export default class ShowProfile extends Component {
@@ -10,7 +11,8 @@ export default class ShowProfile extends Component {
         last_name: '',
         email: '',
         createdAt:'',
-        _id:''
+        _id:'',
+        isAdmin:false,
       }
     componentDidMount(){
           let token = localStorage.usertoken
@@ -24,8 +26,6 @@ export default class ShowProfile extends Component {
       console.log("Decoded token ",decoded)
       console.log("DecodedUser ",decodedUser)
       console.log("email ",decodedEmail)
-
-
        this.setState(decodedUser)
       }else{
         this.props.history.push('/login')
@@ -61,7 +61,7 @@ export default class ShowProfile extends Component {
                           
                       </div>
                       <div className="desc">
-                      {/* {bio} */}
+                  
                       </div>
                       
                       
@@ -73,7 +73,7 @@ export default class ShowProfile extends Component {
                               
                               <img alt="email icon" src="https://freeiconshop.com/wp-content/uploads/edd/email-flat.png" width="40px" height="40px"/>
                           </a>
-                          
+                        <NavLink to="profile/edit"> <button>Edit Profile</button> </NavLink>
                       </div>
                       <div className="desc">Profile Created: {date[0]}-{date[1]} </div>
                   </div>
