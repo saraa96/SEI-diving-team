@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
-import {Image} from 'bootstrap'
 import '../trip.css'
 export default class courses extends Component {
 
@@ -12,7 +11,7 @@ let Trips = this.props.trip.map(item =>
       <div className="card" style={{margin:"0 auto",width:"65%", height:"65%"}}>
         <div className="row ">
           <div className="col-md-4">
-              <img className={{width:"150px", height:"200px"}} variant="left" src={item.ImageUrl} class="w-100"/>
+              <img alt="s" className={{width:"150px", height:"200px"}} variant="left" src={item.ImageUrl} class="w-100"/>
             </div>
             <div className="col-md-8 px-3">
               <div className="card-block px-3">
